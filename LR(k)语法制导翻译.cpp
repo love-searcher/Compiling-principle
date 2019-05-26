@@ -1,4 +1,64 @@
+/*
+Description
+ 输入开始符号，非终结符，终结符，语意动作表，产生式
+输出简单优先法的语意处理动作
+以拓广算术表达式G[A]: 为例
+A→E
+E→E+T | T
+T→T*F | F
+F→(E) | a
 
+Input
+ 输入开始符号；
+非终结符个数，非终结符，空格符分隔；
+终结符个数，终结符，空格符分隔；
+语意动作个数，语意动作符，空格符分隔；
+产生式的个数，各产生式的序号，产生式的左边和右边符号源产生式，目标产生式，空格符分隔；
+状态数，ACTION列数，GOTO列数，空格符分隔；
+状态，ACTION矩阵(k 0 表示空 A 0 表示接收)，GOTO矩阵(0表示 空)，空格符分隔；
+输入分析字符串，#结束
+
+Output
+输出分析过程；
+语意动作符序列；用空格隔开，第一个动作前有一空格。
+
+Sample Input Copy
+A
+4  E T F A
+6  a +  * ( ) #
+3  1 2 3
+7
+0  A E     0
+1  E E+T   1
+2  E T     0
+3  T T*F   2
+4  T F     0
+5  F (E)   0
+6  F a     3
+
+3
+1 ADD
+2 MUL
+3 x
+
+12 6 3
+0  s 5  k 0  k 0  s 4  k 0  k 0  1 2 3
+1  k 0  s 6  k 0  k 0  k 0  A 0  0 0 0
+2  k 0  r 2  s 7  k 0  r 2  r 2  0 0 0
+3  k 0  r 4  r 4  k 0  r 4  r 4  0 0 0
+4  s 5  k 0  k 0  s 4  k 0  k 0  8 2 3
+5  k 0  r 6  r 6  k 0  r 6  r 6  0 0 0
+6  s 5  k 0  k 0  s 4  k 0  k 0  0 9 3
+7  s 5  k 0  k 0  s 4  k 0  k 0  0 0 10
+8  k 0  s 6  k 0  k 0  s 11 k 0  0 0 0
+9  k 0  r 1  s 7  k 0  r 1  r 1  0 0 0
+10 k 0  r 3  r 3  k 0  r 3  r 3  0 0 0
+11 k 0  r 5  r 5  k 0  r 5  r 5  0 0 0
+
+(a+a)*a#
+Sample Output Copy
+ x x ADD x MUL 
+*/
 #include <iostream>
 #include <iomanip>
 #include <map>
