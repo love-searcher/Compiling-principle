@@ -20,13 +20,13 @@ input :
 using namespace std ;
 
 //void init_arr( vector<vector<int>>& arr , int size);
-void read_info( vector<vector<int> >& arr, vector<char>& symble);
-void build_connection(vector<vector<int> >& arr, vector<vector<int> >& matrix, vector<int>& node_values );
+void read_info( vector<vector<char> >& arr, vector<char>& symble);
+void build_connection(vector<vector<char> >& arr, vector<vector<int> >& matrix, vector<int>& node_values );
 void show( vector<vector<int> >& arr, vector<int>& values);
 void show_function( vector<int>& node_values , vector<char>& symble );	
 
 int main(){
-	vector<vector<int> > arr ;
+	vector<vector<char> > arr ;
 	vector<char> symble ;
 	read_info( arr, symble );
 	
@@ -36,6 +36,8 @@ int main(){
 
 	show( matrix , node_values );
 	show_function( node_values , symble );	
+
+    return 0 ;    
 }
 
 void init_arr( vector<vector<int> >& arr , int size){
@@ -55,7 +57,7 @@ args :
 return :
 	the changes are stored in arr and symble 
 */
-void read_info( vector<vector<int> >& arr, vector<char>& symble){
+void read_info( vector<vector<char> >& arr, vector<char>& symble){
 	int size = 0 ;
 	cin >> size ;
 	char temp ;
@@ -66,7 +68,7 @@ void read_info( vector<vector<int> >& arr, vector<char>& symble){
 	
 	// table 
 	for ( int i = 0 ; i < size ; i ++ ){
-		vector<int> row ; char temp ; 
+		vector<char> row ; char temp ; 
 		for ( int j = 0 ; j < size ; j ++ ){
 			cin >> temp ;
 			row.push_back( temp );
@@ -91,7 +93,7 @@ void warshall(vector<vector<int> >& data){
 /*
 
 */
-void build_connection(vector<vector<int> >& arr, vector<vector<int> >& matrix, vector<int>& node_values ){
+void build_connection(vector<vector<char> >& arr, vector<vector<int> >& matrix, vector<int>& node_values ){
 	int size = arr.size() ;
 	init_arr( matrix, 2*size ); // init as 0
 	// Bell method
